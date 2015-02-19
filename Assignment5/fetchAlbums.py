@@ -2,22 +2,21 @@ import requests
 from datetime import datetime
 
 def fetchAlbumIds(artist_id):
-    """Using the Spotify API, take an artist ID and 
-    returns a list of album IDs in a list
-    """
+    """Using the Spotify API, take an artist ID and returns a list of album IDs"""
     url = "https://api.spotify.com/v1/artists/" + artist_id + "/albums?market=US&album_type=album"
     print url
     req = requests.get(url)
     raw_data = req.json()
-    return req.json()["items"][0]['id']
+    album_id_list = []
+    for item in raw_data['items']:
+        album_id_list.append(item['id'])
+    return album_id_list
 print fetchAlbumIds('0vYkHhJ48Bs3jWcvZXvOrP')
 
 def fetchAlbumInfo(album_id):
-    """Using the Spotify API, take an album ID 
-    and return a dictionary with keys 'artist_id', 'album_id' 'name', 'year', popularity'
-    """
+    """Using the Spotify API, take an album ID and return a dictionary with keys 'artist_id', 'album_id' 'name', 'year', popularity'"""
     url = "https://api.spotify.com/v1/albums/" + album_id
-    print url
+    #print url
     req = requests.get(url)
     raw_data = req.json()
     AlbumInfo_dict = {}
