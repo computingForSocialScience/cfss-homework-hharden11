@@ -12,7 +12,7 @@ def fetchArtistId(name):
     and return a Spotify artist ID.
     """
     url = "https://api.spotify.com/v1/search?q=" + name + "&type=artist"
-    print url
+    #print url
     req = requests.get(url)
     return req.json()["artists"]["items"][0]['id']
 print fetchArtistId("Patti Smith")
@@ -24,7 +24,7 @@ def fetchArtistInfo(artist_id):
     'id', 'name', and 'popularity'.
     """
     url = "https://api.spotify.com/v1/artists/" + artist_id
-    print url
+    #print url
     req = requests.get(url)
     raw_data = req.json()
     ArtistInfo_dict = {}
